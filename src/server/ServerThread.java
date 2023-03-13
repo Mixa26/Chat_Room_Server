@@ -64,7 +64,11 @@ public class ServerThread implements Runnable{
             while (!exit){
                 String input = in.readLine();
 
-                if (input.equals("~exit"))exit = true;
+                if (input.equals("~exit")){
+                    exit = true;
+                    Main.sockets.remove(socket);
+                    Main.usernames.remove(username);
+                }
 
                 String msg = Calendar.getInstance().getTime() + " | " +  username + ": " + input;
 
