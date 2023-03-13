@@ -47,8 +47,8 @@ public class Main {
             while(!exit) {
                 String msg = scanner.nextLine();
                 if (msg.equals("~exit"))exit = true;
-                else
-                    out.println(msg);
+
+                out.println(msg);
             }
         }
         catch(IOException e)

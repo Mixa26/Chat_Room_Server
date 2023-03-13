@@ -68,6 +68,7 @@ public class ServerThread implements Runnable{
                     exit = true;
                     Main.sockets.remove(socket);
                     Main.usernames.remove(username);
+                    break;
                 }
 
                 String msg = Calendar.getInstance().getTime() + " | " +  username + ": " + input;

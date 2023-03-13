@@ -20,7 +20,7 @@ public class ClientThread implements Runnable{
         while(!exit){
             try {
                 received = in.readLine();
-                if (!received.equals(null))
+                if (!(received == null))
                     System.out.println(received);
             } catch (IOException e) {
                 System.out.println("Chat closed");
