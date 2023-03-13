@@ -50,6 +50,13 @@ public class ServerThread implements Runnable{
 
             out.println("Welcome " + username + ", have fun in this chat room.");
 
+            synchronized (Main.MSGLOCK)
+            {
+                for (String msg : Main.messagesHistory){
+                    out.println(msg);
+                }
+            }
+
             broadcastMsg("User " + username + " has joined the chat.");
 
             Main.sockets.add(socket);
@@ -59,14 +66,14 @@ public class ServerThread implements Runnable{
 
                 if (input.equals("~exit"))exit = true;
 
-//                synchronized (Main.MSGLOCK)
-//                {
-//                    if (Main.messagesHistory.size() == Main.MSGHISTORYSIZE)
-//                    {
-//                        Main.messagesHistory.remove(0);
-//                    }
-//                    Main.messagesHistory.add(Calendar.getInstance().getTime() + " | " +  username + ": " + input);
-//                }
+                synchronized (Main.MSGLOCK)
+                {
+                    if (Main.messagesHistory.size() == Main.MSGHISTORYSIZE)
+                    {
+                        Main.messagesHistory.remove(0);
+                    }
+                    Main.messagesHistory.add(Calendar.getInstance().getTime() + " | " +  username + ": " + input);
+                }
                 broadcastMsg(Calendar.getInstance().getTime() + " | " +  username + ": " + input);
             }
 

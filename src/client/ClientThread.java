@@ -16,9 +16,12 @@ public class ClientThread implements Runnable{
 
     @Override
     public void run() {
+        String received;
         while(!exit){
             try {
-                System.out.println(in.readLine());
+                received = in.readLine();
+                if (!received.equals(null))
+                    System.out.println(received);
             } catch (IOException e) {
                 System.out.println("Chat closed");
                 exit = true;
