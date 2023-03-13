@@ -66,15 +66,29 @@ public class ServerThread implements Runnable{
 
                 if (input.equals("~exit"))exit = true;
 
+                String msg = Calendar.getInstance().getTime() + " | " +  username + ": " + input;
+
+                for (String censor : Main.censored){
+                    StringBuilder replacement = new StringBuilder();
+                    for (int i = 0; i < censor.length(); i++){
+                        if (i == 0 || i == censor.length()-1) {
+                            replacement.append(censor.charAt(i));
+                            continue;
+                        }
+                        replacement.append("*");
+                    }
+                    msg = msg.replaceAll(censor, replacement.toString());
+                }
+
                 synchronized (Main.MSGLOCK)
                 {
                     if (Main.messagesHistory.size() == Main.MSGHISTORYSIZE)
                     {
                         Main.messagesHistory.remove(0);
                     }
-                    Main.messagesHistory.add(Calendar.getInstance().getTime() + " | " +  username + ": " + input);
+                    Main.messagesHistory.add(msg);
                 }
-                broadcastMsg(Calendar.getInstance().getTime() + " | " +  username + ": " + input);
+                broadcastMsg(msg);
             }
 
         }

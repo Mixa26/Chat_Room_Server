@@ -15,10 +15,14 @@ public class Main {
     public static ArrayList<String> messagesHistory = new ArrayList<>();
     public static int MSGHISTORYSIZE = 100;
 
+    public static ArrayList<String> censored = new ArrayList<>();
+
     public static final Object LOCK = new Object();
     public static final Object MSGLOCK = new Object();
 
     public static void main(String[] args) {
+        //add censored words here
+        censored.add("parolaccia");
         try{
             ServerSocket serverSocket = new ServerSocket(PORT);
             while(true){
