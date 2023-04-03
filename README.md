@@ -8,3 +8,5 @@ There is also a simple censored word implementation which can be expanded. If a 
 To use this chat, start the server first, then start multiple instances of client. To use the client type in the username as prompted
 (it must be unique). After that you can chat with other clients. To quit the chat type in "~exit".  Know that someone can now use your
 username because it's freed up.
+
+The full homework specification can be found in the Web Domaći 4 file.
